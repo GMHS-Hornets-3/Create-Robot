@@ -12,9 +12,9 @@ int main()
    
     create_connect();
     driveForward(500);
-    turnLeft(105);
+    turnLeft(110);
     stopAtLine(2150);
-    turnLeft(105);
+    turnLeft(120);
     stopAtLine(2150);
     senseBurning(0);
     create_stop();
@@ -27,7 +27,7 @@ void driveForward (int distance)
     set_create_distance(0);
     while (abs(get_create_distance())<distance)
     {
-        create_drive_direct(250,250);
+        create_drive_direct(250,260);
     	msleep(10);
 	}
 }
@@ -66,7 +66,7 @@ void stopAtLine (int value)
 {
     while (get_create_lcliff_amt()&&get_create_rcliff_amt()>value)
     {
-        create_drive_direct(250,250);
+        create_drive_direct(250,260);
     	msleep(10);
     }
 }
@@ -75,7 +75,7 @@ void stopAtLine2 (int value)
 {
     while (get_create_lfcliff_amt()&&get_create_rfcliff_amt()>value)
     {
-        create_drive_direct(250,250);
+        create_drive_direct(250,270);
     	msleep(10);
     }
 }
@@ -93,9 +93,9 @@ void senseBurning (int channel)
     		msleep(10);
 		}
         set_create_total_angle(0);
-    	while (abs(get_create_total_angle())<105)
+    	while (abs(get_create_total_angle())<100)
     	{
-        	create_drive_direct(-150,150);
+        	create_drive_direct(150,-150);
     		msleep(10);
 		}
     	set_create_distance(0);
