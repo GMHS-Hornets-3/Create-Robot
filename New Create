@@ -13,17 +13,19 @@ int main()
 {
    
     create_connect();
- //   driveForward(20);
- //   stopAtLine2(2150);
- //   turnLeft(90);
- //   driveForward(20);
- //   stopAtLine(2150);
- //   turnLeft(80);
-    stopAtLine3(2150);
-    senseBurning(0);
-    driveForward(1375);
-    turnRight(45);
-    driveForward(1500);
+    driveForward(20);
+    stopAtLine2(2400);
+    turnLeft(90);
+    driveForward(20);
+    stopAtLine(2400);
+    turnLeft(80);
+    stopAtLine3(2200);
+    driveForward(1200);
+    stopAtLine3(2200);
+    //senseBurning(0);
+    //driveForward(1375);
+    //turnRight(45);
+    //driveForward(1500);
     create_stop();
     create_disconnect();
     return 0;
@@ -153,9 +155,10 @@ void senseBurning (int channel)
 
 void stopAtLine3 (int value)
 {
-	while (get_create_lcliff_amt() && get_create_rcliff_amt()<value)
+	while ((get_create_lfcliff_amt()<value) || (get_create_rfcliff_amt()<value))
     {
         create_drive_direct(250,260);
     	msleep(10);
     }
+    create_stop();
 }   
