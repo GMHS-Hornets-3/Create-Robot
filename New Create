@@ -1,5 +1,4 @@
 #include <kipr/botball.h>
-
 void driveForward (int distance);
 void driveBackwards (int distance);
 void turnRight (int angle);
@@ -9,9 +8,7 @@ void stopAtLine2 (int value);
 void stopAtLine3 (int value);
 void senseBurning (int channel);
 int main()
-    
 {
-   
     create_connect();
     driveForward(20);
     stopAtLine2(2400);
@@ -30,7 +27,6 @@ int main()
     create_disconnect();
     return 0;
 }
-
 void driveForward (int distance)
 {
     set_create_distance(0);
@@ -40,7 +36,6 @@ void driveForward (int distance)
     	msleep(10);
 	}
 }
-
 void driveBackwards (int distance)
 {
     set_create_distance(0);
@@ -50,7 +45,6 @@ void driveBackwards (int distance)
     	msleep(10);
 	}
 }
-
 void turnRight (int angle)
 {
     set_create_total_angle(0);
@@ -60,7 +54,6 @@ void turnRight (int angle)
     	msleep(10);
 	}
 }
-        
 void turnLeft (int angle)
 {
     set_create_total_angle(0);
@@ -70,7 +63,6 @@ void turnLeft (int angle)
         msleep(10);
     }  
 }
-
 void stopAtLine (int value)
 {
     while (get_create_lcliff_amt()&&get_create_rcliff_amt()>value)
@@ -79,7 +71,6 @@ void stopAtLine (int value)
     	msleep(10);
     }
 }
- 
 void stopAtLine2 (int value)
 {
     while (get_create_lfcliff_amt()&&get_create_rfcliff_amt()>value)
@@ -88,7 +79,6 @@ void stopAtLine2 (int value)
     	msleep(10);
     }
 }
-
 void senseBurning (int channel)
 {
     camera_open_black();
@@ -150,9 +140,8 @@ void senseBurning (int channel)
     	{
         	create_drive_direct(150,-150);
     		msleep(10);
-		}
 	}
-
+}
 void stopAtLine3 (int value)
 {
 	while ((get_create_lfcliff_amt()<value) || (get_create_rfcliff_amt()<value))
