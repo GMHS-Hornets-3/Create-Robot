@@ -10,41 +10,46 @@ void stopAtLine3 (int value);
 void senseBurning (int channel);
 void turnLeftUntilLine (int sleep);
 void followLine (int distance);
+int fire;
+int LeftUp=370;
+int LeftDown=1524;
+int RightUp=1648;
+int RightDown=491; 
+void placeFirefighters (int channel);
 
 int main()    
 {
-    wait_for_light(0);
+    //wait_for_light(0);
     shut_down_in(119);
     create_connect();
     enable_servos();
-    set_servo_position(2,539);
+    set_servo_position(2,RightDown);
     msleep(400);
     disable_servos();
     driveForward(30);
     stopAtLine2(2400);
-    msleep(500);
+    msleep(400);
     turnLeft(100);
     driveForward(20);
     stopAtLine(2400);
     turnLeftUntilLine(300);
     enable_servos();
-    set_servo_position(1,1771);
+    set_servo_position(1,LeftDown);
     msleep(500);
     disable_servos();
     followLine(173);
     camera_open_black();
     senseBurning(0);
     enable_servos();
-    set_servo_position(1,1771);
+    set_servo_position(1,LeftDown);
     msleep(500);
-    set_servo_position(2,539);
+    set_servo_position(2,RightDown);
     msleep(500);
     disable_servos();
-    /*driveForward(1375);
-    turnRight(45);
-    driveForward(1500);
-    turnRight(180);*/
-    //drive forward
+    
+    
+    placeFirefighters(1);
+    
     
     create_stop();
     create_disconnect();
@@ -128,6 +133,7 @@ void senseBurning (int channel)
     }
     if (get_object_area(0,0) > 50)
     {
+        fire = 1;
         set_create_distance(0);
         while (abs(get_create_distance())<45)
     	{
@@ -146,20 +152,21 @@ void senseBurning (int channel)
         	create_drive_direct(150,150);
     		msleep(10);
 		}
+        msleep(500);
     	enable_servos();
-   		set_servo_position(1,778);
+   		set_servo_position(1,LeftUp);
     	msleep(500);
-        set_servo_position(2,1656);
+        set_servo_position(2,RightUp);
         msleep(500);
     	disable_servos();
     	set_create_distance(0);
-    	while (abs(get_create_distance())<30)
+    	while (abs(get_create_distance())<40)
     	{
         	create_drive_direct(-150,-150);
         	msleep(10);
     	}
         set_create_total_angle(0);
-    	while (abs(get_create_total_angle())<65)
+    	while (abs(get_create_total_angle())<120)
     	{
         	create_drive_direct(150,-150);
         	msleep(10);
@@ -167,6 +174,7 @@ void senseBurning (int channel)
     }
     else
     {
+        fire = 2;
         set_create_distance(0);
     	while (abs(get_create_distance())<10)
     	{
@@ -174,9 +182,9 @@ void senseBurning (int channel)
         	msleep(10);
     	}
         enable_servos();
-   		set_servo_position(1,778);
+   		set_servo_position(1,LeftUp);
     	msleep(500);
-        set_servo_position(2,1656);
+        set_servo_position(2,RightUp);
         msleep(500);
     	disable_servos();
         set_create_distance(0);
@@ -194,7 +202,7 @@ void senseBurning (int channel)
 		}
        
      	set_create_total_angle(0);
-    	while (abs(get_create_total_angle())<60)
+    	while (abs(get_create_total_angle())<120)
     	{
         	create_drive_direct(150,-150);
     		msleep(10);
@@ -243,6 +251,83 @@ void followLine (int distance)
     create_stop();
 }
 
+void placeFirefighters (int channel)
+{
+    if (fire = 1)
+    {
+        set_create_distance(0);
+    	while (abs(get_create_distance())<10)
+    	{
+        	create_drive_direct(150,150);
+        	msleep(10);
+    	}
+        enable_servos();
+   		set_servo_position(1,LeftUp);
+    	msleep(500);
+        set_servo_position(2,RightUp);
+        msleep(500);
+    	disable_servos();
+        set_create_distance(0);
+    	while (abs(get_create_distance())<70)
+    	{
+        	create_drive_direct(-100,-100);
+    		msleep(10);
+		}
+        
+    	set_create_total_angle(0);
+    	while (abs(get_create_total_angle())<60)
+    	{
+        	create_drive_direct(150,-150);
+    		msleep(10);
+		}
+       
+     	set_create_total_angle(0);
+    	while (abs(get_create_total_angle())<120)
+    	{
+        	create_drive_direct(150,-150);
+    		msleep(10);
+		}
+	}
+    else
+         {
+        set_create_distance(0);
+        while (abs(get_create_distance())<45)
+    	{
+        	create_drive_direct(-100,-100);
+    		msleep(10);
+		}
+        set_create_total_angle(0);
+    	while (abs(get_create_total_angle())<35)
+    	{
+        	create_drive_direct(150,-150);
+    		msleep(10);
+		}
+    	set_create_distance(0);
+    	while (abs(get_create_distance())<25)
+    	{
+        	create_drive_direct(150,150);
+    		msleep(10);
+		}
+    	enable_servos();
+   		set_servo_position(1,LeftUp);
+    	msleep(500);
+        set_servo_position(2,RightUp);
+        msleep(500);
+    	disable_servos();
+    	set_create_distance(0);
+    	while (abs(get_create_distance())<40)
+    	{
+        	create_drive_direct(-150,-150);
+        	msleep(10);
+    	}
+        set_create_total_angle(0);
+    	while (abs(get_create_total_angle())<120)
+    	{
+        	create_drive_direct(150,-150);
+        	msleep(10);
+    	}
+    }
+}
 
 
 
