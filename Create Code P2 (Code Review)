@@ -11,8 +11,9 @@ void senseBurning (int channel);
 void turnLeftUntilLine (int sleep);
 void followLine (int distance);
 void pickupcitizens (int value);
+void driveFast (int distance);
 int fire;
-int LeftUp=800;
+int LeftUp=785;
 int LeftDown=1771;
 int RightUp=1810;
 int RightDown=593; 
@@ -21,7 +22,7 @@ void placeCitizens (int value);
 
 int main()    
 {
-    //wait_for_light(0);
+  //wait_for_light(0);
     shut_down_in(119);
     create_connect();
     enable_servos();
@@ -44,7 +45,7 @@ int main()
     senseBurning(0);
     driveBackwards(24);
     create_stop();
-    msleep(45000);
+    msleep(50000);
     enable_servos();
     set_servo_position(1,LeftDown);
     msleep(500);
@@ -61,25 +62,25 @@ int main()
     followLine(25);
     placeFirefighters(1);
     
-    
     enable_servos();
     set_servo_position(1,LeftDown);
     msleep(500);
     set_servo_position(2,RightDown);
     msleep(500);
     disable_servos();
-    driveForward(34);
+    driveForward(38);
     turnLeft(90);
     stopAtLine(2400);
-    driveForward(20);
+    driveForward(25);
     turnLeft(80);
     driveForward(10);
     stopAtLine(2400);
     turnLeft(85);
     followLine(50);
     placeFirefighters(1);
-    pickupcitizens(1);
-    placeCitizens(1);
+    
+    enable_servos();
+    set_servo_position(1,LeftDown);
     create_stop();
     create_disconnect();
     return 0;
@@ -311,7 +312,7 @@ void placeFirefighters (int value)
     		msleep(10);
 		}
      	set_create_total_angle(0);
-    	while (abs(get_create_total_angle())<85)
+    	while (abs(get_create_total_angle())<80) //changed from 85
     	{
         	create_drive_direct(-150,150);
     		msleep(10);
@@ -385,7 +386,7 @@ void placeFirefighters (int value)
     	create_stop();
     }
 }
-void pickupcitizens (int value)
+/*void pickupcitizens (int value)
 {
     if (fire == value)
     {
@@ -466,4 +467,14 @@ while (abs(get_create_distance())<50)
     	}
     	create_stop();
     }
+}*/
+void driveFast(int distance)
+{
+    set_create_distance(0);
+    while (abs(get_create_distance())<8.33*distance)
+    {
+        create_drive_direct(450,458);
+    	msleep(10);
+	}
 }
+    
