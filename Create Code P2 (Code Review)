@@ -18,7 +18,6 @@ int LeftDown=1771;
 int RightUp=1810;
 int RightDown=593; 
 void placeFirefighters (int value);
-void placeCitizens (int value);
 
 int main()    
 {
@@ -45,7 +44,7 @@ int main()
     senseBurning(0);
     driveBackwards(24);
     create_stop();
-    msleep(50000);
+    msleep(53000);
     enable_servos();
     set_servo_position(1,LeftDown);
     msleep(500);
@@ -68,10 +67,10 @@ int main()
     set_servo_position(2,RightDown);
     msleep(500);
     disable_servos();
-    driveForward(38);
+    driveForward(43);
     turnLeft(90);
     stopAtLine(2400);
-    driveForward(25);
+    driveForward(28);
     turnLeft(80);
     driveForward(10);
     stopAtLine(2400);
